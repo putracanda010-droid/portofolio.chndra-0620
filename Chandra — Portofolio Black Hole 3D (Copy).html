@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chandra — Portofolio Black Hole 3D (Copy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#030309;--fg:#f2ede6;--mut:#9a95a6;--ac:#ff9a3c;--ac2:#ffd9a0;--card:rgba(18,14,28,.55);--bd:rgba(255,190,120,.14)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;transition:opacity .2s}
+.glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(255,150,60,.10),transparent 65%);transform:translate(-50%,-50%);left:-999px;top:-999px}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) 5vw 16px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:linear-gradient(rgba(3,3,9,.75),rgba(3,3,9,0))}
+.logo{font-weight:700;letter-spacing:.28em;font-size:.95rem;color:var(--fg);text-decoration:none}
+.logo span{color:var(--ac)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav a{color:var(--mut);text-decoration:none;font-size:.85rem;letter-spacing:.08em;transition:color .3s}
+nav a:hover,nav a.on{color:var(--ac2)}
+main{position:relative;z-index:2}
+section{min-height:100vh;padding:120px 7vw 80px;display:flex;flex-direction:column;justify-content:center;max-width:1280px;margin:0 auto}
+#home{min-height:100vh;padding-top:110px}
+.tag{display:inline-flex;gap:10px;align-items:center;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ac)}
+.tag::before{content:"";width:34px;height:1px;background:var(--ac)}
+h1{font-size:clamp(3.2rem,11vw,9rem);line-height:.95;font-weight:700;letter-spacing:-.03em;margin:18px 0 22px;background:linear-gradient(100deg,#fff 10%,var(--ac2) 45%,var(--ac) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:520px;color:var(--mut);font-size:clamp(1rem,1.6vw,1.2rem)}
+.lead b{color:var(--fg);font-weight:500}
+.cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.04em;transition:transform .3s,box-shadow .3s,background .3s;border:1px solid var(--bd);color:var(--fg)}
+.btn.p{background:linear-gradient(120deg,var(--ac),#ff6a2b);color:#1a0d02;border:0;box-shadow:0 0 30px rgba(255,130,40,.35)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(255,130,40,.35)}
+.scroll{position:absolute;bottom:28px;left:7vw;font-size:.7rem;letter-spacing:.3em;color:var(--mut);display:flex;align-items:center;gap:12px}
+.scroll i{width:1px;height:42px;background:linear-gradient(var(--ac),transparent);animation:dr 2s infinite}
+@keyframes dr{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+h2{font-size:clamp(2rem,5vw,3.8rem);font-weight:500;letter-spacing:-.02em;margin:14px 0 34px;line-height:1.1}
+h2 em{font-style:normal;color:var(--ac)}
+.glass{background:var(--card);border:1px solid var(--bd);border-radius:20px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+.about p{color:var(--mut);margin-bottom:16px;font-size:1.05rem}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{padding:26px 22px}
+.stat strong{display:block;font-size:2.6rem;font-weight:700;color:var(--ac2);line-height:1}
+.stat span{font-size:.8rem;color:var(--mut);letter-spacing:.08em}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.sk{padding:28px}
+.sk h3{font-weight:500;font-size:1.15rem;margin-bottom:6px}
+.sk p{color:var(--mut);font-size:.9rem;margin-bottom:16px}
+.bar{height:4px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.in .bar i{width:var(--w)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chips span{font-size:.78rem;padding:6px 14px;border-radius:99px;border:1px solid var(--bd);color:var(--mut)}
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.card{padding:0;overflow:hidden;transition:transform .25s ease-out,border-color .3s;transform-style:preserve-3d;will-change:transform}
+.card:hover{border-color:rgba(255,170,90,.45)}
+.thumb{height:170px;position:relative;overflow:hidden}
+.thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.25),transparent 45%)}
+.t1{background:conic-gradient(from 200deg at 50% 60%,#ff9a3c,#3b1a6e,#0a0a1e,#ff6a2b)}
+.t2{background:linear-gradient(135deg,#1e3a8a,#7c3aed 55%,#f472b6)}
+.t3{background:radial-gradient(circle at 30% 70%,#fbbf24,#b45309 40%,#1c1008)}
+.t4{background:linear-gradient(160deg,#0f766e,#164e63 50%,#0c0a1f)}
+.cb{padding:24px}
+.cb small{color:var(--ac);letter-spacing:.2em;font-size:.7rem;text-transform:uppercase}
+.cb h3{font-weight:500;margin:6px 0 8px;font-size:1.25rem}
+.cb p{color:var(--mut);font-size:.92rem}
+.tl{border-left:1px solid var(--bd);margin-left:6px;max-width:760px}
+.ti{position:relative;padding:0 0 38px 34px}
+.ti::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--ac);box-shadow:0 0 16px var(--ac)}
+.ti small{color:var(--ac2);letter-spacing:.15em;font-size:.75rem}
+.ti h3{font-weight:500;font-size:1.2rem;margin:4px 0}
+.ti p{color:var(--mut);font-size:.95rem}
+#contact{align-items:center;text-align:center}
+#contact h2{font-size:clamp(2.4rem,8vw,6rem)}
+.mail{font-size:clamp(1.1rem,3vw,2rem);color:var(--ac2);text-decoration:none;border-bottom:1px solid var(--ac);padding-bottom:4px;transition:color .3s}
+.mail:hover{color:#fff}
+.soc{display:flex;gap:26px;margin-top:40px;justify-content:center;flex-wrap:wrap}
+.soc a{color:var(--mut);text-decoration:none;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+.soc a:hover{color:var(--ac)}
+footer{position:relative;z-index:2;text-align:center;padding:30px 20px calc(30px + env(safe-area-inset-bottom,0px));color:var(--mut);font-size:.78rem;letter-spacing:.1em}
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+@media(max-width:800px){nav ul{gap:16px}nav a{font-size:.72rem}.about{grid-template-columns:1fr}section{padding:100px 6vw 60px}#home{justify-content:flex-start;padding-top:46vh}.scroll{display:none}.glow{display:none}}
+@media(max-width:480px){nav ul li:nth-child(n+4){display:none}}
+@media(prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="glow" id="glow"></div>
+<nav>
+<a class="logo" href="#home">CHAN<span>DRA</span></a>
+<ul>
+<li><a href="#home" class="on">Beranda</a></li>
+<li><a href="#about">Tentang</a></li>
+<li><a href="#skills">Keahlian</a></li>
+<li><a href="#work">Karya</a></li>
+<li><a href="#journey">Perjalanan</a></li>
+<li><a href="#contact">Kontak</a></li>
+</ul>
+</nav>
+<main>
+<section id="home">
+<div class="tag rv">Creative Developer &amp; Designer</div>
+<h1 class="rv d1">Chandra</h1>
+<p class="lead rv d2">Saya merancang dan membangun pengalaman digital yang <b>imersif, cepat, dan berkesan</b> — dari antarmuka interaktif hingga animasi 3D yang bernapas.</p>
+<div class="cta rv d3"><a class="btn p" href="#work">Lihat Karya</a><a class="btn" href="#contact">Hubungi Saya</a></div>
+<div class="scroll"><i></i>SCROLL</div>
+</section>
+
+<section id="about">
+<div class="tag rv">01 — Tentang</div>
+<h2 class="rv">Menjelajah batas antara <em>desain</em> &amp; kode.</h2>
+<div class="about">
+<div class="rv">
+<p>Saya Chandra, seorang pengembang kreatif yang percaya bahwa website terbaik adalah yang terasa hidup. Saya menggabungkan estetika, performa, dan detail kecil agar setiap interaksi terasa halus.</p>
+<p>Seperti black hole yang menarik segala sesuatu ke pusatnya, saya ingin setiap proyek menarik perhatian dan memberi dampak nyata bagi penggunanya.</p>
+</div>
+<div class="stats rv d1">
+<div class="stat glass"><strong data-n="40">0</strong><span>PROYEK SELESAI</span></div>
+<div class="stat glass"><strong data-n="5">0</strong><span>TAHUN PENGALAMAN</span></div>
+<div class="stat glass"><strong data-n="25">0</strong><span>KLIEN PUAS</span></div>
+<div class="stat glass"><strong data-n="12">0</strong><span>PENGHARGAAN</span></div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<div class="tag rv">02 — Keahlian</div>
+<h2 class="rv">Alat yang saya <em>kuasai</em>.</h2>
+<div class="skills">
+<div class="sk glass rv"><h3>Frontend Development</h3><p>Antarmuka cepat, responsif, dan mudah diakses.</p><div class="bar"><i style="--w:94%"></i></div></div>
+<div class="sk glass rv d1"><h3>Animasi &amp; Visual 3D</h3><p>Canvas, WebGL, dan motion yang halus.</p><div class="bar"><i style="--w:88%"></i></div></div>
+<div class="sk glass rv d2"><h3>UI/UX Design</h3><p>Dari riset, wireframe, hingga prototipe.</p><div class="bar"><i style="--w:90%"></i></div></div>
+<div class="sk glass rv d3"><h3>Backend &amp; API</h3><p>Layanan yang andal dan terstruktur.</p><div class="bar"><i style="--w:78%"></i></div></div>
+</div>
+<div class="chips rv"><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Three.js</span><span>Node.js</span><span>Figma</span><span>Tailwind</span><span>WebGL</span><span>Git</span></div>
+</section>
+
+<section id="work">
+<div class="tag rv">03 — Karya</div>
+<h2 class="rv">Proyek <em>pilihan</em>.</h2>
+<div class="proj">
+<article class="card glass rv"><div class="thumb t1"></div><div class="cb"><small>Web 3D</small><h3>Event Horizon</h3><p>Visualisasi interaktif ruang angkasa dengan ribuan partikel real-time.</p></div></article>
+<article class="card glass rv d1"><div class="thumb t2"></div><div class="cb"><small>Dashboard</small><h3>Nebula Analytics</h3><p>Dashboard data dengan grafik hidup dan mode gelap yang elegan.</p></div></article>
+<article class="card glass rv d2"><div class="thumb t3"></div><div class="cb"><small>E-Commerce</small><h3>Solaris Store</h3><p>Toko online cepat dengan pengalaman checkout yang mulus.</p></div></article>
+<article class="card glass rv d3"><div class="thumb t4"></div><div class="cb"><small>Mobile App</small><h3>Orbit Planner</h3><p>Aplikasi perencana harian dengan animasi mikro yang menyenangkan.</p></div></article>
+</div>
+</section>
+
+<section id="journey">
+<div class="tag rv">04 — Perjalanan</div>
+<h2 class="rv">Jejak <em>langkah</em>.</h2>
+<div class="tl">
+<div class="ti rv"><small>2024 — SEKARANG</small><h3>Senior Creative Developer</h3><p>Memimpin pengembangan pengalaman web interaktif untuk merek-merek ternama.</p></div>
+<div class="ti rv"><small>2022 — 2024</small><h3>Frontend Developer</h3><p>Membangun produk digital berskala besar dengan fokus performa dan aksesibilitas.</p></div>
+<div class="ti rv"><small>2020 — 2022</small><h3>UI Designer &amp; Freelancer</h3><p>Mengerjakan puluhan proyek desain dan website untuk klien dari berbagai bidang.</p></div>
+</div>
+</section>
+
+<section id="contact">
+<div class="tag rv">05 — Kontak</div>
+<h2 class="rv">Mari buat sesuatu <em>luar biasa</em>.</h2>
+<a class="mail rv d1" href="mailto:halo@chandra.dev">halo@chandra.dev</a>
+<div class="soc rv d2"><a href="#contact">GitHub</a><a href="#contact">LinkedIn</a><a href="#contact">Instagram</a><a href="#contact">Dribbble</a></div>
+</section>
+</main>
+<footer>© <span id="yr">2026</span> CHANDRA — DIRANCANG DI BAWAH LANGIT YANG GELAP</footer>
+
+<script>
+(function(){
+"use strict";
+var c=document.getElementById("bg"),x=c.getContext("2d"),W,H,dpr,P=[],S=[],R,rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var mx=0,my=0,tx=0,ty=0,sc=0,ss=0,run=true,last=0,TAU=Math.PI*2;
+function init(){
+ dpr=Math.min(window.devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;
+ c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+ R=Math.min(W,H)*(W<800?0.12:0.115);
+ var n=W<800?1500:3000;P=[];
+ for(var i=0;i<n;i++){
+  var u=Math.pow(Math.random(),1.5),r=R*(1.7+u*4.6),t=u;
+  var hue=28+ (1-t)*22, lit=60+(1-t)*32;
+  P.push({r:r,a:Math.random()*TAU,y:(Math.random()-.5)*r*.05,sp:1.1/Math.pow(r/R,1.5),
+   s:Math.random()*1.6+.6,col:"hsl("+hue+",100%,"+lit+"%)",t:t,rl:R*(1.22+t*.7)});
+ }
+ var m=Math.floor(W*H/4500);S=[];
+ for(var j=0;j<m;j++)S.push({x:Math.random()*W,y:Math.random()*H,z:Math.random()*.9+.1,p:Math.random()*TAU});
+ x.fillStyle="#030309";x.fillRect(0,0,W,H);
+}
+function scr(){var h=document.documentElement.scrollHeight-innerHeight;sc=h>0?Math.min(1,Math.max(0,scrollY/h)):0}
+addEventListener("resize",init);addEventListener("scroll",scr,{passive:true});
+addEventListener("mousemove",function(e){tx=e.clientX/W-.5;ty=e.clientY/H-.5;g.style.left=e.clientX+"px";g.style.top=e.clientY+"px"},{passive:true});
+var g=document.getElementById("glow");
+document.addEventListener("visibilitychange",function(){run=!document.hidden;if(run){last=0;requestAnimationFrame(frame)}});
+function frame(now){
+ if(!run)return;requestAnimationFrame(frame);
+ var dt=last?Math.min(.05,(now-last)/1000):.016;last=now;if(rm)dt=0;
+ ss+=(sc-ss)*.06;mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+ var k=Math.min(1,ss*3.5),mob=W<800;
+ var cx=(mob?W*.5:W*(.7-.2*k))-mx*18, cy=(mob?H*.27+H*.1*k:H*.46)-my*14;
+ var T=.26+ss*.9+my*.14, cT=Math.cos(T), sT=Math.sin(T);
+ c.style.opacity=Math.max(.32,1-ss*2.2).toFixed(3);
+ x.globalCompositeOperation="source-over";
+ x.fillStyle="rgba(3,3,9,.3)";x.fillRect(0,0,W,H);
+ // stars
+ var t=now/1000;
+ for(var i=0;i<S.length;i++){var s=S[i];
+  var px=s.x-mx*30*s.z,py=s.y-my*30*s.z-ss*H*.25*s.z;py=((py%H)+H)%H;
+  x.globalAlpha=(.35+.35*Math.sin(t*1.5+s.p))*s.z+.1;x.fillStyle="#fff";x.fillRect(px,py,s.z*1.6,s.z*1.6);
+ }
+ // halo
+ x.globalAlpha=1;x.globalCompositeOperation="lighter";
+ var gr=x.createRadialGradient(cx,cy,R*.9,cx,cy,R*5);
+ gr.addColorStop(0,"rgba(255,140,50,.20)");gr.addColorStop(.35,"rgba(255,100,30,.07)");gr.addColorStop(1,"rgba(0,0,0,0)");
+ x.fillStyle=gr;x.fillRect(cx-R*5,cy-R*5,R*10,R*10);
+ // back + lensed
+ var front=[];
+ for(var q=0;q<P.length;q++){var p=P[q];p.a+=p.sp*dt*.9;if(p.a>TAU)p.a-=TAU;
+  var ca=Math.cos(p.a),sa=Math.sin(p.a),X=p.r*ca,Z=p.r*sa;
+  var b=.55+.45*(ca>0?ca:ca*.4)+.1;
+  var sx=cx+X,sy=cy+p.y*cT+Z*sT;
+  if(Z>=0){front.push(p,sx,sy,b);}
+  else{
+   x.fillStyle=p.col;x.globalAlpha=Math.min(1,b*.85);x.fillRect(sx,sy,p.s,p.s);
+   var lx=cx+p.rl*ca,ly=p.rl*sa*(.9+.1*cT);
+   x.globalAlpha=Math.min(1,b*.9);x.fillRect(lx,cy+ly*1.0,p.s,p.s);
+   x.globalAlpha=Math.min(1,b*.55);x.fillRect(lx,cy-ly*.82,p.s,p.s);
+  }
+ }
+ // event horizon
+ x.globalCompositeOperation="source-over";x.globalAlpha=1;
+ var ring=x.createRadialGradient(cx,cy,R*.96,cx,cy,R*1.5);
+ ring.addColorStop(0,"rgba(255,230,190,.55)");ring.addColorStop(.2,"rgba(255,150,60,.25)");ring.addColorStop(1,"rgba(255,100,30,0)");
+ x.fillStyle=ring;x.beginPath();x.arc(cx,cy,R*1.5,0,TAU);x.fill();
+ x.fillStyle="#000";x.beginPath();x.arc(cx,cy,R,0,TAU);x.fill();
+ x.lineWidth=1.6;x.strokeStyle="rgba(255,225,180,.9)";x.shadowColor="rgba(255,140,40,.9)";x.shadowBlur=18;
+ x.beginPath();x.arc(cx,cy,R*1.01,0,TAU);x.stroke();x.shadowBlur=0;
+ // front disk
+ x.globalCompositeOperation="lighter";
+ for(var f=0;f<front.length;f+=4){var pp=front[f];
+  x.fillStyle=pp.col;x.globalAlpha=Math.min(1,front[f+3]);x.fillRect(front[f+1],front[f+2],pp.s*1.15,pp.s*1.15);
+ }
+ x.globalAlpha=1;x.globalCompositeOperation="source-over";
+}
+init();scr();requestAnimationFrame(frame);
+
+// reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");
+ var pr=e.target.closest(".sk");if(pr)pr.classList.add("in");
+ e.target.querySelectorAll&&e.target.querySelectorAll("[data-n]").forEach(count);
+ if(e.target.hasAttribute&&e.target.hasAttribute("data-n"))count(e.target);
+ io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll(".rv").forEach(function(el){io.observe(el)});
+document.querySelectorAll(".stat strong").forEach(function(el){io.observe(el)});
+function count(el){if(el._d)return;el._d=1;var n=+el.dataset.n,st=performance.now();
+ (function u(now){var p=Math.min(1,(now-st)/1600),e=1-Math.pow(1-p,3);el.textContent=Math.round(n*e)+(p>=1?"+":"");if(p<1)requestAnimationFrame(u)})(st)}
+// safety: if observer unsupported content stays visible
+if(!("IntersectionObserver" in window)){document.querySelectorAll(".rv").forEach(function(e){e.classList.add("in")})}
+
+// 3D tilt on cards
+if(matchMedia("(hover:hover)").matches&&!rm){document.querySelectorAll(".card").forEach(function(cd){
+ cd.addEventListener("mousemove",function(e){var r=cd.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+  cd.style.transform="perspective(800px) rotateY("+px*10+"deg) rotateX("+(-py*10)+"deg) translateY(-4px)"});
+ cd.addEventListener("mouseleave",function(){cd.style.transform=""});
+})}
+// active nav
+var links=document.querySelectorAll("nav ul a"),secs=document.querySelectorAll("section");
+var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})}})},{threshold:.5});
+secs.forEach(function(s){so.observe(s)});
+document.getElementById("yr").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
